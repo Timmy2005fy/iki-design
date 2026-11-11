@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura Dental / Modern Precision Dental Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ============================================================
+       AURA DENTAL / EDITORIAL PRECISION PRACTICE
+       Palette   : Medical Azure Blue (#0077D8), Titanium Slate (#12161E),
+                   Laser Cyan Accent (#00F2FE), Crisp White.
+       Geometry  : Proportional Radii (8px, 14px, 20px, 24px)
+       Copy      : Strict Minimalist (Zero Em Dashes, Zero Hyphens)
+       Motion    : Fully Static Layout for Figma
+    ============================================================ */
+
+    :root {
+      /* Azure Medical Palette & Titanium Depth */
+      --blue-primary:   #0077D8;
+      --blue-hover:     #0062B3;
+      --blue-tint:      #EFF6FF;
+
+      --titanium-slate: #12161E;
+      --laser-cyan:     #00F2FE;
+
+      --surface-white:  #FFFFFF;
+      --surface-canvas: #F8F9FA;
+      --surface-card:   #FFFFFF;
+      --surface-dark:   #0B0E14;
+
+      --text-dark:      #111418;
+      --text-muted:     #636B78;
+      --text-light:     #FFFFFF;
+
+      --border-light:   #E4E7EC;
+      --border-dark:    rgba(255, 255, 255, 0.18);
+
+      /* Proportional Corner Radii Starting at 8px */
+      --radius-sm:      8px;
+      --radius-md:      14px;
+      --radius-lg:      20px;
+      --radius-xl:      24px;
+      --radius-pill:    32px;
+
+      --container-max:  1280px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background-color: var(--surface-white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 44px;
+    }
+
+    /* ============================================================
+       SECTION 1: FULL-BLEED PHOTOGRAPHIC HERO
+    ============================================================ */
+    .hero-wrapper {
+      position: relative;
+      min-height: 900px;
+      background-color: var(--surface-dark);
+      color: var(--text-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+
+    .hero-photo-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero-photo-bg img {
+      filter: brightness(0.68) contrast(1.15);
+    }
+
+    .hero-blue-tint {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 119, 216, 0.16);
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-gradient-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(11, 14, 20, 0.38);
+      z-index: 3;
+    }
+
+    /* Integrated Top Navigation */
+    .hero-nav {
+      position: relative;
+      z-index: 10;
+      padding-top: 32px;
+    }
+
+    .hero-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+      padding-bottom: 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .brand-laser-dot {
+      display: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .nav-contact-link {
+      font-size: 0.88rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-light);
+    }
+
+    /* Hero Body Content */
+    .hero-content-stage {
+      position: relative;
+      z-index: 10;
+      padding: 80px 0 100px 0;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      align-items: flex-end;
+      gap: 40px;
+    }
+
+    .hero-text-block {
+      max-width: 640px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-cyan-tag {
+      display: none;
+    }
+
+    .hero-headline {
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+      color: var(--text-light);
+      margin-bottom: 36px;
+    }
+
+    .hero-headline span.headline-light {
+      display: block;
+      font-weight: 500;
+      color: #CAD5E2;
+    }
+
+    .hero-action-line {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .btn-hero-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background-color: var(--surface-white);
+      color: var(--titanium-slate);
+      font-size: 0.92rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+    }
+
+    .hero-phone-callout {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    /* Floating Metric Card Right (Clear Glass) */
+    .hero-floating-box {
+      background-color: rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      max-width: 330px;
+      margin-left: auto;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.22), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+    }
+
+    .floating-box-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .floating-stat-num {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-light);
+    }
+
+    .box-laser-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--laser-cyan);
+    }
+
+    .floating-stat-desc {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    /* ============================================================
+       SECTION 2: ABOUT US (4 Tilted Satellite Cards Layout)
+    ============================================================ */
+    .about-satellite-section {
+      padding: 140px 0;
+      background-color: var(--surface-white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .satellite-stage {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Central Focused Narrative */
+    .central-copy-core {
+      text-align: center;
+      max-width: 560px;
+      z-index: 10;
+      position: relative;
+    }
+
+    .core-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 16px;
+    }
+
+    .core-heading {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--titanium-slate);
+      margin-bottom: 18px;
+    }
+
+    .core-heading span.heading-subtle {
+      display: block;
+      font-weight: 500;
+      color: #647082;
+    }
+
+    .core-paragraph {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 34px;
+    }
+
+    .core-buttons-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .btn-blue-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background-color: var(--blue-primary);
+      color: var(--surface-white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+    }
+
+    .btn-outlined-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px;
+      background-color: var(--surface-white);
+      color: var(--titanium-slate);
+      border: 1px solid var(--border-light);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+    }
+
+    /* 4 Tilted Satellite Cards Surrounding Center */
+    .satellite-card {
+      position: absolute;
+      width: 176px;
+      height: 176px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 3px solid var(--surface-white);
+      box-shadow: 0 20px 40px rgba(18, 22, 30, 0.08);
+      z-index: 5;
+      background-color: var(--surface-canvas);
+    }
+
+    .sat-top-left {
+      top: 20px;
+      left: 50px;
+      transform: rotate(-9deg);
+    }
+
+    .sat-top-right {
+      top: 30px;
+      right: 50px;
+      transform: rotate(9deg);
+    }
+
+    .sat-bottom-left {
+      bottom: 20px;
+      left: 30px;
+      transform: rotate(-11deg);
+    }
+
+    .sat-bottom-right {
+      bottom: 30px;
+      right: 30px;
+      transform: rotate(10deg);
+    }
+
+    /* ============================================================
+       SECTION 3: SERVICE (Split Header & Cards Row)
+    ============================================================ */
+    .services-section {
+      padding: 120px 0 150px 0;
+      background-color: var(--surface-canvas);
+      border-top: 1px solid var(--border-light);
+    }
+
+    .services-split-header {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: flex-end;
+      margin-bottom: 64px;
+    }
+
+    .service-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      margin-bottom: 12px;
+    }
+
+    .service-main-heading {
+      font-size: clamp(2.4rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--titanium-slate);
+    }
+
+    .service-main-heading span.heading-subtle {
+      display: block;
+      font-weight: 500;
+      color: #647082;
+    }
+
+    .service-header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .service-header-copy {
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .btn-view-services {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background-color: var(--blue-primary);
+      color: var(--surface-white);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+    }
+
+    /* Cards Row */
+    .services-row-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 32px;
+    }
+
+    .service-card-item {
+      background-color: var(--surface-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 40px 32px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 20px rgba(18, 22, 30, 0.03);
+    }
+
+    .service-index-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      margin-bottom: 16px;
+    }
+
+    .service-card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--titanium-slate);
+      margin-bottom: 14px;
+    }
+
+    .service-card-text {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    .service-photo-frame {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      height: 100%;
+      min-height: 260px;
+      box-shadow: 0 4px 20px rgba(18, 22, 30, 0.03);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      background-color: var(--surface-white);
+      border-top: 1px solid var(--border-light);
+      padding: 48px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .footer-flex-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-nav-list {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    /* ============================================================
+       RESPONSIVE BREAKPOINTS
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .hero-content-stage {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-floating-box {
+        margin-left: 0;
+      }
+
+      .satellite-stage {
+        min-height: auto;
+        padding: 40px 0;
+      }
+
+      .satellite-card {
+        position: static;
+        margin: 10px;
+        transform: none !important;
+        display: inline-block;
+      }
+
+      .services-split-header {
+        grid-template-columns: 1fr;
+      }
+
+      .services-row-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-headline {
+        font-size: clamp(2.4rem, 11vw, 3.4rem);
+      }
+
+      .hero-action-line {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .core-buttons-row {
+        flex-direction: column;
+      }
+
+      .footer-flex-row {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+  ============================================================ -->
+  <header class="hero-wrapper" id="hero">
+    <div class="hero-photo-bg">
+      <img
+        src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=1920&q=80"
+        alt="Patient in dental clinic smiling comfortably during checkup"
+        loading="eager"
+      />
+    </div>
+    <div class="hero-blue-tint"></div>
+    <div class="hero-gradient-overlay"></div>
+
+    <nav class="hero-nav" aria-label="Main Navigation">
+      <div class="container hero-nav-inner">
+        <a href="#hero" class="nav-brand">
+          <span>Aura Dental</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <a href="mailto:care@auradental.com?subject=Contact%20Inquiry" class="nav-contact-link">
+          <span>Contact Us</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="container hero-content-stage">
+      <div class="hero-text-block">
+        <p class="hero-eyebrow">
+          <span>Clinical Atelier &bull; Zurich</span>
+        </p>
+
+        <h1 class="hero-headline">
+          Restoring Radiance.
+          <span class="headline-light">Engineered For Longevity.</span>
+        </h1>
+
+        <div class="hero-action-line">
+          <a href="mailto:care@auradental.com?subject=Appointment%20Booking" class="btn-hero-white">
+            <span>Book Appointment</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <span class="hero-phone-callout">Or Call: (800) 240-8820</span>
+        </div>
+      </div>
+
+      <div class="hero-floating-box">
+        <div class="floating-box-top">
+          <p class="floating-stat-num">12K+</p>
+          <span class="box-laser-chip">
+            <span>Digital Suite</span>
+          </span>
+        </div>
+        <p class="floating-stat-desc">
+          Patients treated with relaxed protocols and digital diagnostic planning.
+        </p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         SECTION 2: ABOUT US (4 Tilted Satellite Cards Layout)
+    ============================================================ -->
+    <section class="about-satellite-section" id="about" aria-label="About Our Practice">
+      <div class="container satellite-stage">
+
+        <!-- Top-Left Tilted Card -->
+        <div class="satellite-card sat-top-left">
+          <img
+            src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80"
+            alt="Doctor consulting with dental patient"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Top-Right Tilted Card -->
+        <div class="satellite-card sat-top-right">
+          <img
+            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80"
+            alt="Dental specialist in surgical protective mask and loupes"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Central Focused Text Core -->
+        <div class="central-copy-core">
+          <p class="core-eyebrow">
+            <span>About Us</span>
+          </p>
+          <h2 class="core-heading">
+            Compassionate Care.
+            <span class="heading-subtle">Precision Expertise.</span>
+          </h2>
+          <p class="core-paragraph">
+            We focus on comfortable clinical visits through preventative care, low-radiation imaging, and gentle treatment protocols tailored to every patient.
+          </p>
+          <div class="core-buttons-row">
+            <a href="mailto:care@auradental.com?subject=New%20Patient%20Appointment" class="btn-blue-primary">
+              <span>Book Appointment</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="#service" class="btn-outlined-secondary">
+              <span>Our Services</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom-Left Tilted Card -->
+        <div class="satellite-card sat-bottom-left">
+          <img
+            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80"
+            alt="Digital low radiation panoramic imaging equipment"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Bottom-Right Tilted Card -->
+        <div class="satellite-card sat-bottom-right">
+          <img
+            src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80"
+            alt="Smiling patient receiving gentle oral examination"
+            loading="lazy"
+          />
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: SERVICE (Split Header & Cards Row)
+    ============================================================ -->
+    <section class="services-section" id="service" aria-label="Dental Services">
+      <div class="container">
+        <div class="services-split-header">
+          <div>
+            <p class="service-eyebrow">
+              <span>Service</span>
+            </p>
+            <h2 class="service-main-heading">
+              Clinical Excellence.
+              <span class="heading-subtle">Every Treatment Guided By Trust.</span>
+            </h2>
+          </div>
+
+          <div class="service-header-right">
+            <p class="service-header-copy">
+              Full spectrum dental procedures from routine cleanings to aesthetic ceramic restorations.
+            </p>
+            <a href="mailto:care@auradental.com?subject=Full%20Service%20List" class="btn-view-services">
+              <span>View All Services</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="services-row-grid">
+          <!-- Card 1 -->
+          <article class="service-card-item">
+            <span class="service-index-tag">
+              <span>Preventative Dentistry</span>
+            </span>
+            <h3 class="service-card-title">Routine Diagnostics</h3>
+            <p class="service-card-text">
+              Comprehensive oral evaluations, ultrasonic plaque removal, and digital enamel health monitoring.
+            </p>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="service-card-item">
+            <span class="service-index-tag">
+              <span>Restorative Dentistry</span>
+            </span>
+            <h3 class="service-card-title">Ceramic Restorations</h3>
+            <p class="service-card-text">
+              Color matched composite bonding, ceramic inlays, and durable monolithic crown restorations.
+            </p>
+          </article>
+
+          <!-- Image Card -->
+          <div class="service-photo-frame">
+            <img
+              src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?auto=format&fit=crop&w=800&q=80"
+              alt="Pristine modern dental examination room with comfortable patient chair"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" id="contact">
+    <div class="container footer-flex-row">
+      <p>&copy; 2026 Aura Dental Practice. All rights reserved.</p>
+      <ul class="footer-nav-list">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Services</a></li>
+        <li><a href="mailto:care@auradental.com">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

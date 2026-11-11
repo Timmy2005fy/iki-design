@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Hoops / Minimalist Basketball Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ============================================================
+       APEX HOOPS / ULTRA-MINIMALIST EDITORIAL BASKETBALL
+       Aesthetic : Tenista Reference Recreation (Minimalist Hardwood)
+       Palette   : Sunset Palette (#EA6113, #F88F22, #FBB931, #FFE3B3)
+       Geometry  : Proportional Radii (8px, 12px, 18px, 28px)
+       Copy      : Extreme Restraint, Zero Fluff, Zero Em Dashes
+       Motion    : Fully Static for Figma
+    ============================================================ */
+
+    :root {
+      /* Sunset Palette */
+      --sunset-blaze:   #EA6113;
+      --sunset-warm:    #F88F22;
+      --sunset-amber:   #FBB931;
+      --sunset-cream:   #FFE3B3;
+
+      /* Surfaces */
+      --surface-canvas: #F8F9FA;
+      --surface-white:  #FFFFFF;
+      --surface-dark:   #0E0F12;
+      --surface-card:   #15171C;
+
+      /* Typography & Borders */
+      --text-dark:      #0E0F12;
+      --text-muted:     #6E727D;
+      --text-light:     #FFFFFF;
+      --border-light:   #E6E8EC;
+      --border-dark:    rgba(255, 255, 255, 0.18);
+
+      /* Proportional Radii */
+      --radius-sm:      8px;
+      --radius-md:      12px;
+      --radius-lg:      18px;
+      --radius-xl:      28px;
+      --radius-circle:  50%;
+
+      --container-max:  1280px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+      color: var(--text-dark);
+      background-color: var(--surface-canvas);
+      line-height: 1.45;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 44px;
+    }
+
+    /* ============================================================
+       SECTION 1: HERO (Cinematic, Full Bleed, Minimalist)
+    ============================================================ */
+    .hero-wrapper {
+      position: relative;
+      min-height: 980px;
+      background-color: var(--surface-dark);
+      color: var(--text-light);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-bg-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .hero-bg-photo img {
+      filter: brightness(0.68) contrast(1.18) saturate(1.25);
+    }
+
+    .hero-court-tint {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(234, 97, 19, 0.15);
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(14, 15, 18, 0.35);
+      z-index: 3;
+    }
+
+    /* Top Nav */
+    .hero-nav {
+      position: relative;
+      z-index: 10;
+      padding-top: 32px;
+    }
+
+    .hero-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding-bottom: 24px;
+    }
+
+    .hero-nav-links {
+      display: flex;
+      gap: 36px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .hero-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .brand-symbol {
+      color: var(--sunset-amber);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .hero-nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .btn-talk {
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .circle-icon-btn {
+      width: 40px;
+      height: 40px;
+      background-color: var(--surface-white);
+      color: var(--text-dark);
+      border-radius: var(--radius-circle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    /* Hero Center Stage */
+    .hero-center-stage {
+      position: relative;
+      z-index: 10;
+      padding: 32px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-massive-headline {
+      font-size: clamp(5.5rem, 16vw, 15.5rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 0.88;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-align: center;
+      user-select: none;
+      width: 100%;
+    }
+
+    /* Floating Widget: Wilson x Nike */
+    .widget-top-floating {
+      position: absolute;
+      top: 48px;
+      right: 64px;
+      z-index: 12;
+      background-color: rgba(14, 15, 18, 0.82);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      max-width: 290px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .widget-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .widget-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sunset-amber);
+    }
+
+    .widget-text {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .widget-arrow {
+      font-size: 0.82rem;
+      color: var(--sunset-warm);
+      margin-left: auto;
+    }
+
+    /* Hero Bottom Bar */
+    .hero-bottom-bar {
+      position: relative;
+      z-index: 10;
+      padding-bottom: 44px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .hero-tagline-bold {
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .hero-credits {
+      display: flex;
+      gap: 40px;
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 12px;
+    }
+
+    .widget-bottom-membership {
+      background-color: rgba(14, 15, 18, 0.85);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .membership-stat {
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-light);
+    }
+
+    .membership-sub {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--sunset-cream);
+      margin-top: 4px;
+    }
+
+    .membership-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* ============================================================
+       SECTION 2: SKILLED FOCUS / LAYERED WATERMARK & TILTED CARD
+    ============================================================ */
+    .focus-section {
+      padding: 140px 0 160px 0;
+      background-color: var(--surface-canvas);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .focus-top-meta {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .circle-proof-badge {
+      width: 130px;
+      height: 130px;
+      background-color: var(--surface-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-circle);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+    }
+
+    .circle-stat {
+      font-size: 1.75rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--sunset-blaze);
+    }
+
+    .circle-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .trust-meta-box {
+      max-width: 320px;
+      background-color: var(--surface-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .trust-tag {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--sunset-blaze);
+      margin-bottom: 6px;
+    }
+
+    .trust-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+
+    .trust-body {
+      font-size: 0.82rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+    }
+
+    /* Giant Layered Watermark Stage */
+    .watermark-container {
+      position: relative;
+      margin: 48px 0;
+      user-select: none;
+    }
+
+    .watermark-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      line-height: 0.88;
+    }
+
+    .watermark-outline {
+      font-size: clamp(4.8rem, 13vw, 12rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1.5px #D4D7DE;
+    }
+
+    .watermark-solid {
+      font-size: clamp(4.8rem, 13vw, 12rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+
+    /* Centered Tilted Card */
+    .tilted-card {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-6deg);
+      z-index: 10;
+      width: 340px;
+      height: 460px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 2px solid var(--surface-white);
+      background-color: var(--surface-dark);
+      box-shadow: 0 24px 54px rgba(0, 0, 0, 0.2);
+    }
+
+    .tilted-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tilted-label-strip {
+      position: absolute;
+      bottom: 20px;
+      left: 18px;
+      right: 18px;
+      background-color: rgba(14, 15, 18, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      z-index: 5;
+    }
+
+    .trainer-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .trainer-role {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sunset-amber);
+    }
+
+    .trainer-dots {
+      display: flex;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .dot-active {
+      width: 14px;
+      height: 4px;
+      background-color: var(--sunset-blaze);
+      border-radius: 2px;
+    }
+
+    .dot-inactive {
+      width: 4px;
+      height: 4px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+    }
+
+    /* Pagination */
+    .pagination-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 12;
+    }
+
+    .btn-page-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: var(--radius-circle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .btn-page-light {
+      background-color: var(--surface-white);
+      border: 1px solid var(--border-light);
+      color: var(--text-dark);
+    }
+
+    .btn-page-dark {
+      background-color: var(--surface-dark);
+      color: var(--text-light);
+    }
+
+    /* ============================================================
+       SECTION 3: TOUR OUR FACILITIES (Spacious & Minimal)
+    ============================================================ */
+    .facilities-section {
+      padding: 60px 0 140px 0;
+      background-color: var(--surface-canvas);
+    }
+
+    .facilities-card-shell {
+      background-color: var(--surface-white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-xl);
+      padding: 64px;
+    }
+
+    .facilities-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .facilities-copy-block {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .court-mini-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      background-color: var(--surface-dark);
+    }
+
+    .facilities-heading {
+      font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.04;
+      color: var(--text-dark);
+    }
+
+    .facilities-text {
+      font-size: 0.96rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 400px;
+    }
+
+    .btn-court-reserve {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 26px;
+      background-color: var(--sunset-blaze);
+      color: var(--text-light);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      margin-top: 8px;
+    }
+
+    .facility-items-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .facility-card {
+      position: relative;
+      height: 400px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border-light);
+      background-color: var(--surface-dark);
+    }
+
+    .facility-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background-color: rgba(14, 15, 18, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: var(--radius-sm);
+      padding: 5px 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--sunset-cream);
+      z-index: 5;
+    }
+
+    .facility-bottom-info {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
+      background-color: rgba(14, 15, 18, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      z-index: 5;
+    }
+
+    .facility-name {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-light);
+    }
+
+    .facility-detail {
+      font-size: 0.76rem;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .minimal-footer {
+      background-color: var(--surface-dark);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 40px 0;
+      color: #8C909C;
+      font-size: 0.82rem;
+    }
+
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .widget-top-floating {
+        display: none;
+      }
+
+      .tilted-card {
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: rotate(-3deg);
+        margin: 36px auto;
+      }
+
+      .facilities-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .facilities-card-shell {
+        padding: 40px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .hero-nav-links {
+        display: none;
+      }
+
+      .hero-massive-headline {
+        font-size: clamp(3.6rem, 16vw, 6.2rem);
+      }
+
+      .hero-bottom-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+      }
+
+      .focus-top-meta {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .facility-items-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       SECTION 1: HERO
+  ============================================================ -->
+  <header class="hero-wrapper" id="hero">
+    <div class="hero-bg-photo">
+      <img
+        src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1920&q=80"
+        alt="Basketball player leaping in mid-air toward outdoor hoop under intense lighting"
+        loading="eager"
+      />
+    </div>
+    <div class="hero-court-tint"></div>
+    <div class="hero-vignette"></div>
+
+    <nav class="hero-nav" aria-label="Main Navigation">
+      <div class="container hero-nav-inner">
+        <div class="hero-nav-links">
+          <a href="#schedule">Schedule</a>
+          <a href="#events">Events</a>
+        </div>
+
+        <a href="#hero" class="hero-nav-brand">
+          <span class="brand-symbol">&#10038;</span>
+          <span>Apex Hoops</span>
+        </a>
+
+        <div class="hero-nav-actions">
+          <a href="#facilities" class="btn-talk">Let's Talk</a>
+          <button class="circle-icon-btn" aria-label="Open schedule inquiry">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container hero-center-stage">
+      <div class="widget-top-floating">
+        <div class="widget-thumb">
+          <img
+            src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=300&q=80"
+            alt="Official game basketball on hardwood"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <span class="widget-label">Nike x Wilson Lab</span>
+          <p class="widget-text">Pro leather grip specs.</p>
+        </div>
+        <span class="widget-arrow" aria-hidden="true">&#8599;</span>
+      </div>
+
+      <h1 class="hero-massive-headline">Move Faster</h1>
+    </div>
+
+    <div class="container hero-bottom-bar">
+      <div>
+        <div class="hero-credits">
+          <span>Louis / Head</span>
+          <span>Smith / Combine</span>
+          <span>Roberts / Film</span>
+        </div>
+        <p class="hero-tagline-bold">Game On. Play Hard.</p>
+      </div>
+
+      <div class="widget-bottom-membership">
+        <div>
+          <span class="membership-stat">18K+</span>
+          <p class="membership-sub">Active Ballers</p>
+        </div>
+        <div class="membership-avatar">
+          <img
+            src="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&w=300&q=80"
+            alt="Basketball athlete in training stance"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================
+         SECTION 2: FOCUS & TILTED CARD
+    ============================================================ -->
+    <section class="focus-section" id="schedule" aria-label="Philosophy">
+      <div class="container">
+
+        <div class="focus-top-meta">
+          <div class="circle-proof-badge">
+            <span class="circle-stat">100%</span>
+            <p class="circle-label">Pro Certified Coaching</p>
+          </div>
+
+          <div class="trust-meta-box">
+            <span class="trust-tag">#01</span>
+            <h2 class="trust-title">Highly Regarded</h2>
+            <p class="trust-body">
+              Built for speed, decision reads, and tournament execution.
+            </p>
+          </div>
+        </div>
+
+        <div class="watermark-container">
+          <div class="watermark-row">
+            <span class="watermark-outline">Skilled</span>
+            <span class="watermark-solid">Quality/</span>
+          </div>
+          <div class="watermark-row">
+            <span class="watermark-solid">Focus</span>
+            <span class="watermark-outline">Instructor</span>
+          </div>
+
+          <div class="tilted-card">
+            <div class="tilted-card-inner">
+              <img
+                src="https://images.unsplash.com/photo-1574623452334-1e0ac2b3ccb4?auto=format&fit=crop&w=800&q=80"
+                alt="Basketball trainer demonstrating ball handling execution on court"
+                loading="lazy"
+              />
+              <div class="tilted-label-strip">
+                <span class="trainer-name">Marcus Vance</span>
+                <span class="trainer-role">Head Skills Director</span>
+                <div class="trainer-dots">
+                  <span class="dot-active"></span>
+                  <span class="dot-inactive"></span>
+                  <span class="dot-inactive"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pagination-row">
+          <button class="btn-page-circle btn-page-light" aria-label="Previous trainer">
+            <span aria-hidden="true">&larr;</span>
+          </button>
+          <button class="btn-page-circle btn-page-dark" aria-label="Next trainer">
+            <span aria-hidden="true">&rarr;</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: FACILITIES
+    ============================================================ -->
+    <section class="facilities-section" id="facilities" aria-label="Hardwood Facilities">
+      <div class="container">
+        <div class="facilities-card-shell">
+          <div class="facilities-layout">
+
+            <div class="facilities-copy-block">
+              <div class="court-mini-icon">
+                <img
+                  src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=200&q=80"
+                  alt="Official basketball ball on court line"
+                  loading="lazy"
+                />
+              </div>
+
+              <h2 class="facilities-heading">
+                Take A Tour Of Our Facilities
+              </h2>
+
+              <p class="facilities-text">
+                FIBA regulation indoor maple hardwood and high arc shooting pods.
+              </p>
+
+              <a href="mailto:court@apexhoops.com?subject=Facility%20Booking" class="btn-court-reserve">
+                <span>Book Court Time</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+
+            <div class="facility-items-grid">
+              <article class="facility-card">
+                <span class="facility-tag">Maple Court 01</span>
+                <img
+                  src="https://images.unsplash.com/photo-1505666287802-931dc83948e9?auto=format&fit=crop&w=800&q=80"
+                  alt="Full indoor maple hardwood basketball arena with regulation glass backboards"
+                  loading="lazy"
+                />
+                <div class="facility-bottom-info">
+                  <h3 class="facility-name">Grand Maple Arena</h3>
+                  <p class="facility-detail">
+                    FIBA regulation maple hardwood for varsity and pro runs.
+                  </p>
+                </div>
+              </article>
+
+              <article class="facility-card">
+                <span class="facility-tag">Shooting Lab 02</span>
+                <img
+                  src="https://images.unsplash.com/photo-1608245449230-4ac19066d2d0?auto=format&fit=crop&w=800&q=80"
+                  alt="Basketball hoop and net under arena spotlights"
+                  loading="lazy"
+                />
+                <div class="facility-bottom-info">
+                  <h3 class="facility-name">Apex Shooting Lab</h3>
+                  <p class="facility-detail">
+                    Automated ball return pods with shot arc tracking.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="minimal-footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 Apex Hoops. All rights reserved.</p>
+      <ul class="footer-nav">
+        <li><a href="#hero">Top</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#facilities">Facilities</a></li>
+        <li><a href="mailto:court@apexhoops.com">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
