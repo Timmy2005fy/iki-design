@@ -152,48 +152,9 @@ export function WorkSection() {
             </div>
           )}
 
-          {/* Items 2 & 3: Estara & Apex Hoops */}
+          {/* Grid for all other projects */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {PROJECTS.slice(1, 3).map((project) => (
-              <div
-                key={project.id}
-                onClick={() => handleOpenProject(project.id)}
-                className="group cursor-pointer border border-[var(--border-subtle)] bg-[#0d0e11] overflow-hidden hover:border-[var(--text-primary)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col rounded-[8px]"
-              >
-                <div className="relative aspect-[16/10] w-full overflow-hidden flex items-center justify-center">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 550px"
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.01]"
-                  />
-
-                  <div className="absolute bottom-0 inset-x-0 bg-white border-t border-[var(--border-subtle)] px-4 py-3 flex items-center justify-between text-[var(--text-primary)]">
-                    <div className="flex items-center gap-2 truncate">
-                      <span className="text-xs font-semibold truncate tracking-tight text-[var(--text-primary)]">
-                        {project.title.split("/")[0].trim()}
-                      </span>
-                      {project.demoUrl && (
-                        <span className="text-[10px] text-[var(--accent)] font-mono uppercase font-semibold">
-                          / Live Demo
-                        </span>
-                      )}
-                    </div>
-
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0">
-                      <span>View</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Items 4 & 5: Aura Dental & Mi Kafetal */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            {PROJECTS.slice(3, 5).map((project) => (
+            {PROJECTS.slice(1).map((project) => (
               <div
                 key={project.id}
                 onClick={() => handleOpenProject(project.id)}
