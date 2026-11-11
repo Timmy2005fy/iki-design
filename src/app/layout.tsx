@@ -29,8 +29,16 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://iki-design.vercel.app");
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://iki.agency"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "iki / UI/UX Design & Web Development",
     template: "%s | iki",
