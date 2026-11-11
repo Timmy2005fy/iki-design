@@ -29,6 +29,15 @@ export function WorkSection() {
     }
   };
 
+  const handleDirectInquiry = (project: Project) => {
+    const projectName = project.title.split("/")[0].trim();
+    const text = encodeURIComponent(
+      `Hello iki, I saw your work on ${projectName} and would like to build a similar website for my brand.`
+    );
+    const targetUrl = `https://wa.me/2348167052497?text=${text}`;
+    window.open(targetUrl, "_blank", "noopener,noreferrer");
+  };
+
   // Hardware and browser back button support
   useEffect(() => {
     const handlePopState = () => {
@@ -134,7 +143,7 @@ export function WorkSection() {
                 />
 
                 <div className="absolute bottom-0 inset-x-0 bg-white border-t border-[var(--border-subtle)] px-4 sm:px-6 py-3 flex items-center justify-between text-[var(--text-primary)]">
-                  <div className="flex items-center gap-3 truncate">
+                  <div className="flex items-center gap-3 truncate pr-2">
                     <span className="text-xs font-semibold truncate tracking-tight text-[var(--text-primary)]">
                       Jan&apos;s Hair Store
                     </span>
@@ -143,10 +152,25 @@ export function WorkSection() {
                     </span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0">
-                    <span>View project</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </span>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    {PROJECTS[0].liveUrl && (
+                      <a
+                        href={PROJECTS[0].liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-2.5 py-1 rounded-[8px] border border-[var(--border-subtle)] hover:border-[var(--text-primary)] transition-colors bg-white"
+                        title="Open website directly in new tab"
+                      >
+                        <span>Live site</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                      <span>Details</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,21 +194,36 @@ export function WorkSection() {
                   />
 
                   <div className="absolute bottom-0 inset-x-0 bg-white border-t border-[var(--border-subtle)] px-4 py-3 flex items-center justify-between text-[var(--text-primary)]">
-                    <div className="flex items-center gap-2 truncate">
+                    <div className="flex items-center gap-2 truncate pr-2">
                       <span className="text-xs font-semibold truncate tracking-tight text-[var(--text-primary)]">
                         {project.title.split("/")[0].trim()}
                       </span>
-                      {project.demoUrl && (
-                        <span className="text-[10px] text-[var(--accent)] font-mono uppercase font-semibold">
-                          / Live Demo
+                      {project.title.split("/")[1] && (
+                        <span className="hidden sm:inline text-xs text-[var(--text-muted)] truncate">
+                          / {project.title.split("/")[1].trim()}
                         </span>
                       )}
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors flex-shrink-0">
-                      <span>View</span>
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </span>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      {(project.liveUrl || project.demoUrl) && (
+                        <a
+                          href={project.liveUrl || project.demoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-[11px] font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] px-2.5 py-1 rounded-[8px] border border-[var(--border-subtle)] hover:border-[var(--text-primary)] transition-colors bg-white"
+                          title="Open website directly in new tab"
+                        >
+                          <span>Live site</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                      <span className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                        <span>Details</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -195,10 +234,10 @@ export function WorkSection() {
 
       {/* DEDICATED PROJECT VIEW: ISOLATED TAKEOVER */}
       {activeProject && (
-        <div className="fixed inset-0 z-50 bg-white overflow-y-auto overscroll-contain animate-in fade-in duration-200 py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto space-y-6">
-            {/* Top Bar */}
-            <div className="flex items-center justify-between pb-4 border-b border-[var(--border-subtle)]">
+        <div className="fixed inset-0 z-50 bg-white overflow-y-auto overscroll-contain animate-in fade-in duration-200 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto space-y-6 pb-16">
+            {/* Sticky Top Bar for effortless mobile navigation */}
+            <div className="sticky top-0 bg-white z-20 flex items-center justify-between pt-4 sm:pt-6 pb-4 border-b border-[var(--border-subtle)]">
               <span className="font-display font-bold text-xl text-[var(--text-primary)] tracking-tight">
                 iki
               </span>
@@ -214,145 +253,137 @@ export function WorkSection() {
             </div>
 
             <div className="space-y-6">
-              {/* IF PROJECT HAS A LIVE HTML DEMO: RENDER IN AN INTERACTIVE IFRAME */}
-              {activeProject.demoUrl ? (
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between text-xs pb-1">
-                    <span className="font-semibold text-[var(--text-primary)]">
-                      Interactive Live Demo
-                    </span>
+              {/* HIGH-RES IMAGE / SHOWCASE (Zero iframe trap) */}
+              <div className="group relative aspect-[16/10] sm:aspect-[1.95/1] w-full overflow-hidden border border-[var(--border-subtle)] bg-[#0d0e11] flex items-center justify-center rounded-[8px]">
+                <Image
+                  src={
+                    activeProject.gallery && activeProject.gallery.length > 0
+                      ? activeProject.gallery[selectedGalleryIdx].src
+                      : activeProject.image
+                  }
+                  alt={activeProject.title}
+                  fill
+                  sizes="(max-width: 1200px) 100vw, 1150px"
+                  className="object-contain"
+                  priority
+                />
 
-                    <a
-                      href={activeProject.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[var(--accent)] font-semibold hover:underline"
+                {activeProject.gallery && activeProject.gallery.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      onClick={handlePrevImage}
+                      className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] bg-black/70 hover:bg-black text-white border border-white/10 flex items-center justify-center transition-all shadow-md z-10 cursor-pointer"
+                      aria-label="Previous image"
                     >
-                      <span>Open full screen in new tab</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
 
-                  {/* Interactive Browser Frame Viewport */}
-                  <div className="relative w-full h-[75vh] min-h-[550px] border border-[var(--border-subtle)] rounded-[8px] overflow-hidden bg-white shadow-sm">
-                    <iframe
-                      src={activeProject.demoUrl}
-                      title={activeProject.title}
-                      className="w-full h-full border-0"
-                    />
-                  </div>
-                </div>
-              ) : (
-                /* OTHERWISE RENDER HIGH-RES IMAGE / GALLERY */
-                <>
-                  <div className="group relative aspect-[16/10] sm:aspect-[1.95/1] w-full overflow-hidden border border-[var(--border-subtle)] bg-[#0d0e11] flex items-center justify-center rounded-[8px]">
-                    <Image
-                      src={
-                        activeProject.gallery && activeProject.gallery.length > 0
-                          ? activeProject.gallery[selectedGalleryIdx].src
-                          : activeProject.image
-                      }
-                      alt={activeProject.title}
-                      fill
-                      sizes="(max-width: 1200px) 100vw, 1150px"
-                      className="object-contain"
-                      priority
-                    />
+                    <button
+                      type="button"
+                      onClick={handleNextImage}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] bg-black/70 hover:bg-black text-white border border-white/10 flex items-center justify-center transition-all shadow-md z-10 cursor-pointer"
+                      aria-label="Next image"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
 
-                    {activeProject.gallery && activeProject.gallery.length > 1 && (
-                      <>
-                        <button
-                          type="button"
-                          onClick={handlePrevImage}
-                          className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] bg-black/70 hover:bg-black text-white border border-white/10 flex items-center justify-center transition-all shadow-md z-10 cursor-pointer"
-                          aria-label="Previous image"
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={handleNextImage}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 rounded-[8px] bg-black/70 hover:bg-black text-white border border-white/10 flex items-center justify-center transition-all shadow-md z-10 cursor-pointer"
-                          aria-label="Next image"
-                        >
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-
-                        <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
-                          <span className="bg-black/85 text-white text-xs font-semibold px-2.5 py-1 rounded-[8px] border border-white/10 pointer-events-auto">
-                            {activeProject.gallery[selectedGalleryIdx].title}
-                          </span>
-                          <span className="bg-black/85 text-white text-xs font-semibold px-2.5 py-1 rounded-[8px] border border-white/10">
-                            {selectedGalleryIdx + 1} / {activeProject.gallery.length}
-                          </span>
-                        </div>
-                      </>
-                    )}
-                  </div>
-
-                  {activeProject.gallery && activeProject.gallery.length > 0 && (
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {activeProject.gallery.map((screen, sIdx) => (
-                        <button
-                          key={screen.src}
-                          type="button"
-                          onClick={() => setSelectedGalleryIdx(sIdx)}
-                          className={`relative aspect-[16/9] overflow-hidden border-2 bg-[#0d0e11] transition-all text-left cursor-pointer rounded-[8px] ${
-                            selectedGalleryIdx === sIdx
-                              ? "border-[var(--text-primary)] opacity-100"
-                              : "border-transparent opacity-60 hover:opacity-100"
-                          }`}
-                        >
-                          <Image
-                            src={screen.src}
-                            alt={screen.title}
-                            fill
-                            sizes="260px"
-                            className="object-contain"
-                          />
-                          <span className="absolute bottom-1.5 left-1.5 bg-black/85 text-white text-[10px] font-semibold px-2 py-0.5 rounded-[8px]">
-                            {screen.title}
-                          </span>
-                        </button>
-                      ))}
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 pointer-events-none z-10">
+                      <span className="bg-black/85 text-white text-xs font-semibold px-2.5 py-1 rounded-[8px] border border-white/10 pointer-events-auto">
+                        {activeProject.gallery[selectedGalleryIdx].title}
+                      </span>
+                      <span className="bg-black/85 text-white text-xs font-semibold px-2.5 py-1 rounded-[8px] border border-white/10">
+                        {selectedGalleryIdx + 1} / {activeProject.gallery.length}
+                      </span>
                     </div>
-                  )}
-                </>
+                  </>
+                )}
+              </div>
+
+              {activeProject.gallery && activeProject.gallery.length > 0 && (
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {activeProject.gallery.map((screen, sIdx) => (
+                    <button
+                      key={screen.src}
+                      type="button"
+                      onClick={() => setSelectedGalleryIdx(sIdx)}
+                      className={`relative aspect-[16/9] overflow-hidden border-2 bg-[#0d0e11] transition-all text-left cursor-pointer rounded-[8px] ${
+                        selectedGalleryIdx === sIdx
+                          ? "border-[var(--text-primary)] opacity-100"
+                          : "border-transparent opacity-60 hover:opacity-100"
+                      }`}
+                    >
+                      <Image
+                        src={screen.src}
+                        alt={screen.title}
+                        fill
+                        sizes="260px"
+                        className="object-contain"
+                      />
+                      <span className="absolute bottom-1.5 left-1.5 bg-black/85 text-white text-[10px] font-semibold px-2 py-0.5 rounded-[8px]">
+                        {screen.title}
+                      </span>
+                    </button>
+                  ))}
+                </div>
               )}
 
               {/* Project Meta Details */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-[var(--border-subtle)]">
-                <div>
-                  <h3 className="font-display text-xl font-bold text-[var(--text-primary)]">
-                    {activeProject.title}
-                  </h3>
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {activeProject.service} &middot; {activeProject.year}
-                  </span>
+              <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6 pt-4 border-t border-[var(--border-subtle)]">
+                <div className="space-y-4 max-w-2xl">
+                  <div className="space-y-1.5">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
+                      {activeProject.title}
+                    </h3>
+                    <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                      {activeProject.description}
+                    </p>
+                    <span className="text-xs text-[var(--text-muted)] block">
+                      {activeProject.service} &middot; {activeProject.year}
+                    </span>
+                  </div>
+
+                  {/* Deliverables List */}
+                  {activeProject.deliverables && activeProject.deliverables.length > 0 && (
+                    <div className="space-y-2">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-muted)] block">
+                        Deliverables
+                      </span>
+                      <div className="flex flex-wrap gap-2">
+                        {activeProject.deliverables.map((item) => (
+                          <span
+                            key={item}
+                            className="text-xs px-2.5 py-1 bg-[#f7f7f8] text-[var(--text-secondary)] border border-[var(--border-subtle)] rounded-[8px]"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-center gap-3">
-                  {activeProject.liveUrl && (
+                <div className="flex flex-wrap items-center gap-3 pt-2 lg:pt-0">
+                  <button
+                    type="button"
+                    onClick={() => handleDirectInquiry(activeProject)}
+                    className="inline-flex items-center gap-1.5 bg-[#111215] text-white text-xs font-semibold px-4 py-2.5 rounded-[8px] hover:bg-[var(--accent)] transition-colors shadow-sm cursor-pointer"
+                  >
+                    <MessageCircle className="w-3.5 h-3.5" />
+                    <span>Inquire About This</span>
+                  </button>
+
+                  {(activeProject.liveUrl || activeProject.demoUrl) && (
                     <a
-                      href={activeProject.liveUrl}
+                      href={activeProject.liveUrl || activeProject.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 bg-[#111215] text-white text-xs font-semibold px-4 py-2.5 rounded-[8px] hover:bg-[var(--accent)] transition-colors"
+                      className="inline-flex items-center gap-1.5 border border-[var(--border-subtle)] text-[var(--text-primary)] text-xs font-semibold px-4 py-2.5 rounded-[8px] hover:border-[var(--text-primary)] bg-white transition-colors"
                     >
                       <span>Visit live site</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </a>
                   )}
-
-                  <a
-                    href="#whatsapp"
-                    onClick={handleCloseProject}
-                    className="inline-flex items-center gap-1.5 border border-[var(--border-subtle)] text-[var(--text-primary)] text-xs font-semibold px-4 py-2.5 rounded-[8px] hover:border-[var(--text-primary)] transition-colors"
-                  >
-                    <MessageCircle className="w-3.5 h-3.5" />
-                    <span>Inquire About This</span>
-                  </a>
                 </div>
               </div>
             </div>
